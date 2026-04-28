@@ -1,0 +1,27 @@
+import { Routes, Route } from "react-router-dom";
+
+import StronaGlowna from "./strony/StronaGlowna";
+import ONas from "./strony/ONas";
+import Kontakt from "./strony/Kontakt";
+import Oferta from "./strony/Oferta";
+import Serwis from "./strony/Serwis";
+import SkupTelefonow from "./strony/SkupTelefonow";
+import Gwarancja from "./strony/Gwarancja";
+import Artykuly from "./strony/Artykuly";
+import Regulaminy from "./strony/Regulaminy";
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<StronaGlowna />} />
+      <Route path="/o-nas" element={<ONas />} />
+      <Route path="/kontakt" element={<Kontakt />} />
+      <Route path="/oferta" element={<Oferta />} />
+      <Route path="/serwis" element={<Serwis />} />
+      <Route path="/skup-telefonow" element={<SkupTelefonow />} />
+      <Route path="/gwarancja" element={<Gwarancja />} />
+      <Route path="/artykuly" element={<Artykuly />} />
+      <Route path="/regulaminy" element={<Regulaminy />} />
+    </Routes>
+  );
+}
