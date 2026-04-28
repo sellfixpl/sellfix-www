@@ -25,8 +25,7 @@ export default function Artykuly() {
           </h1>
 
           <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
-            Miejsce na wpisy blogowe, poradniki oraz treści SEO
-            związane z naprawą telefonów, serwisem GSM i elektroniką.
+            Nowe
           </p>
         </div>
 
@@ -46,7 +45,7 @@ export default function Artykuly() {
               </h2>
 
               <p className="mt-3 text-zinc-300">
-                Tutaj później podepniemy pełny artykuł albo blog.
+                Nowe.
               </p>
             </article>
           ))}

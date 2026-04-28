@@ -19,7 +19,7 @@ export default function ONas() {
           </h1>
 
           <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
-            SellFix oferuje serwis telefonów w Kielcach, zajmując się szybką i skuteczną naprawą smartfonów, watchy, tabletów, laptopów i konsol wszystkich marek. Nasz serwis w kielcach oferuje kompleksową pomoc w naprawie i konserwacji urządzeń mobilnych. Wykonujemy zarówno standardowe naprawy, jak i bardziej zaawansowane usługi serwisowe, aby Twój sprzęt działał jak nowy.
+            SellFix oferuje serwis telefonów w Kielcach, zajmując się szybką i skuteczną naprawą smartfonów, watchy, tabletów, laptopów i konsol wszystkich marek. Nasz serwis w Kielcach oferuje kompleksową pomoc w naprawie i konserwacji urządzeń mobilnych. Wykonujemy zarówno standardowe naprawy, jak i bardziej zaawansowane usługi serwisowe, aby Twój sprzęt działał jak nowy.
           </p>
         </div>
 
