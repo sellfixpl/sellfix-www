@@ -1,17 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import {
-  Menu,
-  X,
-  ChevronDown,
-  Facebook,
-  Instagram,
-} from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
-
-const facebookUrl =
-  "https://www.facebook.com/profile.php?id=61553593684081";
-const instagramUrl = "https://www.instagram.com/sellfix.pl";
 
 const menuSerwis = [
   { nazwa: "Apple", link: "/serwis/apple" },
@@ -47,20 +37,10 @@ export default function MenuGlowne() {
         : "text-zinc-200 hover:text-lime-400"
     }`;
 
-  const zamknijMenu = () => {
-    setMenuMobilne(false);
-    setMenuSerwisOpen(false);
-    setMenuOfertaOpen(false);
-  };
-
   return (
     <header className="sticky top-0 z-50 border-b border-lime-400/20 bg-zinc-950/95 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3">
-        <Link
-          to="/"
-          className="flex shrink-0 items-center"
-          onClick={zamknijMenu}
-        >
+        <Link to="/" className="flex shrink-0 items-center">
           <img
             src="/1001.png"
             alt="SellFix"
@@ -73,6 +53,7 @@ export default function MenuGlowne() {
             Strona główna
           </NavLink>
 
+          {/* SERWIS */}
           <div className="relative">
             <button
               onClick={() => {
@@ -111,6 +92,7 @@ export default function MenuGlowne() {
             )}
           </div>
 
+          {/* OFERTA */}
           <div className="relative">
             <button
               onClick={() => {
@@ -160,44 +142,22 @@ export default function MenuGlowne() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
-          <a
-            href={facebookUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border border-zinc-700 p-3 text-zinc-200 transition hover:border-lime-400 hover:text-lime-400"
-            aria-label="Facebook SellFix"
-          >
-            <Facebook size={18} />
-          </a>
-
-          <a
-            href={instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border border-zinc-700 p-3 text-zinc-200 transition hover:border-lime-400 hover:text-lime-400"
-            aria-label="Instagram SellFix"
-          >
-            <Instagram size={18} />
-          </a>
-
-          <a
-            href="tel:+48792937406"
-            className="rounded-2xl bg-lime-400 px-6 py-3 text-sm font-bold text-zinc-950 transition hover:bg-lime-300"
-          >
-            Zadzwoń
-          </a>
-        </div>
+        <a
+          href="tel:+48792937406"
+          className="hidden rounded-2xl bg-lime-400 px-6 py-3 text-sm font-bold text-zinc-950 transition hover:bg-lime-300 md:inline-flex"
+        >
+          Zadzwoń
+        </a>
 
         <button
           className="text-white xl:hidden"
           onClick={() => setMenuMobilne(!menuMobilne)}
-          aria-label="Menu"
         >
           {menuMobilne ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
+      {/* MOBILE */}
       {menuMobilne && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}
@@ -207,73 +167,32 @@ export default function MenuGlowne() {
           <NavLink
             to="/"
             className="block py-3 text-zinc-200"
-            onClick={zamknijMenu}
+            onClick={() => setMenuMobilne(false)}
           >
             Strona główna
           </NavLink>
 
-          <div className="py-3">
-            <p className="mb-2 font-bold text-lime-400">Serwis</p>
-
-            {menuSerwis.map((item) => (
-              <NavLink
-                key={item.nazwa}
-                to={item.link}
-                className="block rounded-xl px-4 py-3 text-zinc-200 hover:bg-zinc-900"
-                onClick={zamknijMenu}
-              >
-                {item.nazwa}
-              </NavLink>
-            ))}
-          </div>
-
-          <div className="py-3">
-            <p className="mb-2 font-bold text-lime-400">Oferta</p>
-
-            {menuOferta.map((item) => (
-              <NavLink
-                key={item.nazwa}
-                to={item.link}
-                className="block rounded-xl px-4 py-3 text-zinc-200 hover:bg-zinc-900"
-                onClick={zamknijMenu}
-              >
-                {item.nazwa}
-              </NavLink>
-            ))}
-          </div>
+          {menuSerwis.map((item) => (
+            <NavLink
+              key={item.nazwa}
+              to={item.link}
+              className="block py-3 text-zinc-200"
+              onClick={() => setMenuMobilne(false)}
+            >
+              {item.nazwa}
+            </NavLink>
+          ))}
 
           {menuGlowne.map((item) => (
             <NavLink
               key={item.nazwa}
               to={item.link}
               className="block py-3 text-zinc-200"
-              onClick={zamknijMenu}
+              onClick={() => setMenuMobilne(false)}
             >
               {item.nazwa}
             </NavLink>
           ))}
-
-          <div className="mt-4 flex items-center gap-3">
-            <a
-              href={facebookUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full border border-zinc-700 p-3 text-zinc-200"
-              aria-label="Facebook SellFix"
-            >
-              <Facebook size={20} />
-            </a>
-
-            <a
-              href={instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full border border-zinc-700 p-3 text-zinc-200"
-              aria-label="Instagram SellFix"
-            >
-              <Instagram size={20} />
-            </a>
-          </div>
 
           <a
             href="tel:+48792937406"
