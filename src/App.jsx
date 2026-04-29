@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 
 import CookieBanner from "./komponenty/CookieBanner";
 import LocalBusinessSchema from "./komponenty/LocalBusinessSchema";
+import FloatingSocials from "./komponenty/FloatingSocials";
 
 import StronaGlowna from "./strony/StronaGlowna";
 import ONas from "./strony/ONas";
@@ -109,6 +110,7 @@ export default function App() {
       <div className="relative z-10 min-h-screen">
         <ScrollDoSekcji />
         <LocalBusinessSchema />
+        <FloatingSocials />
 
         <Routes>
           <Route path="/" element={<StronaGlowna />} />
@@ -123,22 +125,10 @@ export default function App() {
           <Route path="/serwis/apple" element={<SerwisApple />} />
           <Route path="/serwis/android" element={<SerwisAndroid />} />
 
-          <Route
-            path="/serwis/wymiana-wyswietlacza"
-            element={<WymianaWyswietlacza />}
-          />
-          <Route
-            path="/serwis/wymiana-baterii"
-            element={<WymianaBaterii />}
-          />
-          <Route
-            path="/serwis/naprawa-po-zalaniu"
-            element={<NaprawaPoZalaniu />}
-          />
-          <Route
-            path="/serwis/wymiana-gniazda-ladowania"
-            element={<WymianaGniazdaLadowania />}
-          />
+          <Route path="/serwis/wymiana-wyswietlacza" element={<WymianaWyswietlacza />} />
+          <Route path="/serwis/wymiana-baterii" element={<WymianaBaterii />} />
+          <Route path="/serwis/naprawa-po-zalaniu" element={<NaprawaPoZalaniu />} />
+          <Route path="/serwis/wymiana-gniazda-ladowania" element={<WymianaGniazdaLadowania />} />
 
           <Route path="/serwis/android/samsung" element={<Samsung />} />
           <Route path="/serwis/android/xiaomi" element={<Xiaomi />} />
@@ -187,10 +177,7 @@ export default function App() {
           <Route path="/regulaminy" element={<Regulaminy />} />
           <Route path="/regulamin-serwisu" element={<RegulaminSerwisu />} />
           <Route path="/fixguard" element={<FixGuard />} />
-          <Route
-            path="/polityka-prywatnosci"
-            element={<PolitykaPrywatnosci />}
-          />
+          <Route path="/polityka-prywatnosci" element={<PolitykaPrywatnosci />} />
         </Routes>
 
         <CookieBanner />
