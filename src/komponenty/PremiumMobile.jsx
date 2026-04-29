@@ -9,7 +9,7 @@ export default function PremiumMobile() {
       </div>
 
       <h2 className="text-4xl font-black md:text-5xl">
-        Internet światłowodowy i abonamenty komórkowe
+        Internet i abonamenty komórkowe, umowa na ile chcesz.
       </h2>
 
       <p className="mt-5 max-w-3xl text-lg leading-8 text-zinc-300">
