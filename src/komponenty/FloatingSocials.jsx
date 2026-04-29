@@ -39,7 +39,7 @@ export default function FloatingSocials() {
       </a>
 
       <a
-        href="https://m.me/"
+        href="https://m.me/SellFix"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat"
