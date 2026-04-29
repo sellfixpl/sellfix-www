@@ -8,7 +8,17 @@ export default function SekcjaStartowa() {
       className="relative overflow-hidden border-b border-lime-400/10 bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: "url('/tlo-sellfix.png')" }}
     >
-      <div className="absolute inset-0 bg-zinc-950/75" />
+      <video
+        className="absolute inset-0 h-full w-full object-cover opacity-55"
+        src="/sellfix-hero.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
+
+      <div className="absolute inset-0 bg-zinc-950/35" />
+      <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/80 via-zinc-950/55 to-zinc-950/75" />
 
       <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-lime-400/20 blur-3xl" />
       <div className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-lime-400/10 blur-3xl" />
@@ -52,19 +62,15 @@ export default function SekcjaStartowa() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="rounded-[2rem] border border-lime-400/20 bg-zinc-900/70 p-6 shadow-2xl"
+          className="rounded-[2rem] border border-lime-400/20 bg-zinc-900/75 p-6 shadow-2xl backdrop-blur-md"
         >
-          <div className="rounded-[1.5rem] bg-zinc-950 p-7">
+          <div className="rounded-[1.5rem] bg-zinc-950/95 p-7">
             <div className="mb-6 flex items-center gap-4">
               <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-lime-400 text-zinc-950">
                 <Smartphone size={42} />
               </div>
 
-              <img
-                src="/1001.png"
-                alt="SellFix"
-                className="h-20 w-auto"
-              />
+              <img src="/1001.png" alt="SellFix" className="h-20 w-auto" />
             </div>
 
             <h2 className="text-3xl font-black">
