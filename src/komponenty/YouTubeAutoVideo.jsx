@@ -21,7 +21,7 @@ export default function YouTubeAutoVideo() {
           <div className="relative aspect-video">
             <iframe
               className="absolute inset-0 h-full w-full"
-              src="https://www.youtube.com/shorts/efl93W7E2pE1&rel=0&playsinline=1"
+              src="https://www.youtube.com/watch?v=qk257hD6X0s"
               title="Film SellFix"
               allow="autoplay; encrypted-media; picture-in-picture"
               allowFullScreen
