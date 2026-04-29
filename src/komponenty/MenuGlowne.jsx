@@ -15,6 +15,7 @@ const menuSerwis = [
 const menuOferta = [
   { nazwa: "Sklep GSM", link: "/oferta" },
   { nazwa: "Premium Mobile", link: "/#premium-mobile" },
+  { nazwa: "Premium Mobile", link: "/#fixguard" },
 ];
 
 const menuGlowne = [
