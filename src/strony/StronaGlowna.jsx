@@ -5,7 +5,6 @@ import FixGuard from "../komponenty/FixGuard";
 import PremiumMobile from "../komponenty/PremiumMobile";
 import Stopka from "../komponenty/Stopka";
 import FAQSchema from "../komponenty/FAQSchema";
-import YouTubeAutoVideo from "../komponenty/YouTubeAutoVideo";
 
 export default function StronaGlowna() {
   const faqLista = [
@@ -58,7 +57,6 @@ export default function StronaGlowna() {
 
       <main>
         <SekcjaStartowa />
-        <YouTubeAutoVideo />
         <BannerPromo />
         <PremiumMobile />
         <FixGuard />
