@@ -34,6 +34,7 @@ import RegulaminSerwisu from "./strony/RegulaminSerwisu";
 import FixGuard from "./strony/FixGuard";
 import PolitykaPrywatnosci from "./strony/PolitykaPrywatnosci";
 
+
 import IPhoneSE2020 from "./strony/modele-iphone/IPhoneSE2020";
 import IPhoneSE2022 from "./strony/modele-iphone/IPhoneSE2022";
 import IPhone8 from "./strony/modele-iphone/IPhone8";
@@ -114,6 +115,7 @@ export default function App() {
 
         <Routes>
           <Route path="/" element={<StronaGlowna />} />
+        
           <Route path="/o-nas" element={<ONas />} />
           <Route path="/kontakt" element={<Kontakt />} />
           <Route path="/oferta" element={<Oferta />} />

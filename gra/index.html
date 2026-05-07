@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SellFix: Telefon w Potrzebie</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="gameWrap">
+    <header class="topbar">
+      <div class="brand"><span>Sell</span>Fix</div>
+      <div class="stats">
+        <div>Misja: <b id="mission">Intro</b></div>
+        <div>Bateria: <b id="battery">100%</b></div>
+        <div>Punkty: <b id="score">0</b></div>
+      </div>
+      <a href="/" class="backBtn">← Strona główna</a>
+    </header>
+
+    <main id="screen">
+      <section id="menu" class="panel active">
+        <h1>SellFix: Telefon w Potrzebie</h1>
+        <p>Idziesz spokojnie drogą. Telefon wypada Ci z ręki. Ekran pęka. Teraz liczy się jedno: dotrzeć do SellFix i oddać go do serwisu.</p>
+        <button id="startBtn">Start gry</button>
+        <p class="hint">Sterowanie: W / S albo strzałki góra / dół. Telefon działa też na dotyk.</p>
+      </section>
+
+      <section id="intro" class="panel">
+        <div class="cutscene">
+          <div class="person">🧍</div>
+          <div id="phoneDrop" class="phone">📱</div>
+          <div class="crack">💥</div>
+        </div>
+        <h2>O nie... ekran pękł!</h2>
+        <p>NPC: „Stary, tylko SellFix Cię uratuje.”</p>
+        <button id="goBtn">Biegnij do SellFix</button>
+      </section>
+
+      <section id="game" class="panel">
+        <canvas id="canvas" width="960" height="540"></canvas>
+        <div id="mobileControls">
+          <button id="upBtn">▲</button>
+          <button id="downBtn">▼</button>
+        </div>
+      </section>
+
+      <section id="service" class="panel">
+        <h2>Dotarłeś do SellFix</h2>
+        <p>Technik: „Spokojnie, ogarniemy temat. Najpierw szybka diagnostyka.”</p>
+        <div class="repairBox">
+          <div class="bigPhone">📱</div>
+          <div>
+            <h3>Zlecenie serwisowe</h3>
+            <p>Problem: zbity wyświetlacz</p>
+            <p>Status: przyjęto do naprawy</p>
+            <p>Czas: ekspres</p>
+          </div>
+        </div>
+        <button id="repairBtn">Napraw telefon</button>
+      </section>
+
+      <section id="win" class="panel">
+        <h2>Telefon naprawiony!</h2>
+        <p>Ekran jak nowy. Klient zadowolony. SellFix ratuje dzień.</p>
+        <div class="rating">★★★★★</div>
+        <button id="restartBtn">Zagraj ponownie</button>
+      </section>
+
+      <section id="lose" class="panel">
+        <h2>Bateria padła...</h2>
+        <p>Nie dotarłeś do SellFix na czas. Spróbuj jeszcze raz i omijaj przeszkody.</p>
+        <button id="retryBtn">Spróbuj ponownie</button>
+      </section>
+    </main>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
