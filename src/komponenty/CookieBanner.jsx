@@ -6,9 +6,33 @@ export default function CookieBanner() {
   useEffect(() => {
     const zgoda = localStorage.getItem("sellfix-cookie-consent");
 
-    if (!zgoda) {
-      setPokaz(true);
+    if (zgoda === "accepted") {
+      if (window.gtag) {
+        window.gtag("consent", "update", {
+          analytics_storage: "granted",
+          ad_storage: "granted",
+          ad_user_data: "granted",
+          ad_personalization: "granted",
+        });
+      }
+
+      return;
     }
+
+    if (zgoda === "rejected") {
+      if (window.gtag) {
+        window.gtag("consent", "update", {
+          analytics_storage: "denied",
+          ad_storage: "denied",
+          ad_user_data: "denied",
+          ad_personalization: "denied",
+        });
+      }
+
+      return;
+    }
+
+    setPokaz(true);
   }, []);
 
   const ustawZgode = (czyAkceptuje) => {
