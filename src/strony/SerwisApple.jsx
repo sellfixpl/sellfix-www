@@ -56,7 +56,7 @@ export default function SerwisApple() {
   return (
     <div className="min-h-screen text-white">
       <SEO
-        title="Serwis Apple Kielce | Naprawa iPhone, iPad, MacBook"
+        title="Serwis GSM Apple Kielce | Naprawa iPhone, iPad, MacBook"
         description="Pogwarancyjny serwis Apple w Kielcach. Naprawa iPhone, wymiana baterii, wyświetlacza, złącza ładowania, aparatów i innych podzespołów."
         canonical="https://sellfix.pl/serwis/apple"
       />

@@ -46,7 +46,7 @@ export default function SerwisAndroid() {
   return (
     <div className="min-h-screen text-white">
       <SEO
-        title="Serwis Android Kielce | Samsung Xiaomi Huawei"
+        title="Serwis GSM Android Kielce | Samsung Xiaomi Huawei"
         description="Naprawa telefonów Android w Kielcach. Samsung, Xiaomi, Huawei, Motorola, Oppo, Realme, OnePlus. Wymiana baterii, wyświetlacza i szybka diagnostyka."
         canonical="https://sellfix.pl/serwis/android"
       />
@@ -60,7 +60,7 @@ export default function SerwisAndroid() {
           </div>
 
           <h1 className="text-5xl font-black md:text-6xl">
-            Serwis telefonów Android w Kielcach
+            SellFix - profesjonalny serwis GSM w Kielcach
           </h1>
 
           <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
