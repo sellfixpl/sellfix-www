@@ -70,6 +70,7 @@ import IPhone17 from "./strony/modele-iphone/IPhone17";
 import IPhone17Plus from "./strony/modele-iphone/IPhone17Plus";
 import IPhone17Pro from "./strony/modele-iphone/IPhone17Pro";
 import IPhone17ProMax from "./strony/modele-iphone/IPhone17ProMax";
+import { Navigate } from "react-router-dom";
 
 function ScrollDoSekcji() {
   const location = useLocation();
@@ -180,6 +181,7 @@ export default function App() {
           <Route path="/regulamin-serwisu" element={<RegulaminSerwisu />} />
           <Route path="/fixguard" element={<FixGuard />} />
           <Route path="/polityka-prywatnosci" element={<PolitykaPrywatnosci />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
 
         <CookieBanner />
