@@ -70,7 +70,7 @@ export default function SerwisApple() {
           </div>
 
           <h1 className="text-5xl font-black md:text-6xl">
-            Profesjonalna naprawa urządzeń Apple
+            SellFix - profesjonalny serwis GSM w Kielcach
           </h1>
 
           <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
