@@ -33,20 +33,20 @@ export default function MenuGlowne() {
 
   const klasyMenu = ({ isActive }) =>
     `text-sm font-medium transition ${
-      isActive
-        ? "text-lime-400"
-        : "text-zinc-200 hover:text-lime-400"
+      isActive ? "text-lime-400" : "text-zinc-200 hover:text-lime-400"
     }`;
+
+  const zamknijMenuMobilne = () => {
+    setMenuMobilne(false);
+    setMenuSerwisOpen(false);
+    setMenuOfertaOpen(false);
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-lime-400/20 bg-zinc-950/95 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3">
-        <Link to="/" className="flex shrink-0 items-center">
-          <img
-            src="/1001.png"
-            alt="SellFix"
-            className="h-20 w-auto md:h-24"
-          />
+        <Link to="/" className="flex shrink-0 items-center" onClick={zamknijMenuMobilne}>
+          <img src="/1001.png" alt="SellFix" className="h-20 w-auto md:h-24" />
         </Link>
 
         <nav className="hidden items-center gap-6 xl:flex">
@@ -54,7 +54,6 @@ export default function MenuGlowne() {
             Strona główna
           </NavLink>
 
-          {/* SERWIS */}
           <div className="relative">
             <button
               onClick={() => {
@@ -63,8 +62,7 @@ export default function MenuGlowne() {
               }}
               className="flex items-center gap-1 text-sm font-medium text-zinc-200 transition hover:text-lime-400"
             >
-              Serwis
-              <ChevronDown size={16} />
+              Serwis <ChevronDown size={16} />
             </button>
 
             {menuSerwisOpen && (
@@ -93,7 +91,6 @@ export default function MenuGlowne() {
             )}
           </div>
 
-          {/* OFERTA */}
           <div className="relative">
             <button
               onClick={() => {
@@ -102,8 +99,7 @@ export default function MenuGlowne() {
               }}
               className="flex items-center gap-1 text-sm font-medium text-zinc-200 transition hover:text-lime-400"
             >
-              Oferta
-              <ChevronDown size={16} />
+              Oferta <ChevronDown size={16} />
             </button>
 
             {menuOfertaOpen && (
@@ -133,11 +129,7 @@ export default function MenuGlowne() {
           </div>
 
           {menuGlowne.map((item) => (
-            <NavLink
-              key={item.nazwa}
-              to={item.link}
-              className={klasyMenu}
-            >
+            <NavLink key={item.nazwa} to={item.link} className={klasyMenu}>
               {item.nazwa}
             </NavLink>
           ))}
@@ -153,43 +145,86 @@ export default function MenuGlowne() {
         <button
           className="text-white xl:hidden"
           onClick={() => setMenuMobilne(!menuMobilne)}
+          aria-label="Menu"
         >
           {menuMobilne ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
-      {/* MOBILE */}
       {menuMobilne && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
-          className="border-t border-lime-400/20 bg-zinc-950 px-5 pb-5 xl:hidden"
+          className="max-h-[calc(100vh-105px)] overflow-y-auto border-t border-lime-400/20 bg-zinc-950 px-5 pb-5 xl:hidden"
         >
-          <NavLink
-            to="/"
-            className="block py-3 text-zinc-200"
-            onClick={() => setMenuMobilne(false)}
-          >
+          <NavLink to="/" className="block py-3 text-zinc-200" onClick={zamknijMenuMobilne}>
             Strona główna
           </NavLink>
 
-          {menuSerwis.map((item) => (
-            <NavLink
-              key={item.nazwa}
-              to={item.link}
-              className="block py-3 text-zinc-200"
-              onClick={() => setMenuMobilne(false)}
-            >
-              {item.nazwa}
-            </NavLink>
-          ))}
+          <button
+            onClick={() => {
+              setMenuOfertaOpen(!menuOfertaOpen);
+              setMenuSerwisOpen(false);
+            }}
+            className="flex w-full items-center justify-between py-3 text-left text-zinc-200"
+          >
+            Oferta
+            <ChevronDown
+              size={16}
+              className={`transition ${menuOfertaOpen ? "rotate-180" : ""}`}
+            />
+          </button>
+
+          {menuOfertaOpen && (
+            <div className="mb-2 rounded-2xl border border-lime-400/20 bg-zinc-900 p-2">
+              {menuOferta.map((item) => (
+                <NavLink
+                  key={item.nazwa}
+                  to={item.link}
+                  className="block rounded-xl px-4 py-3 text-zinc-200 hover:bg-lime-400 hover:text-zinc-950"
+                  onClick={zamknijMenuMobilne}
+                >
+                  {item.nazwa}
+                </NavLink>
+              ))}
+            </div>
+          )}
+
+          <button
+            onClick={() => {
+              setMenuSerwisOpen(!menuSerwisOpen);
+              setMenuOfertaOpen(false);
+            }}
+            className="flex w-full items-center justify-between py-3 text-left text-zinc-200"
+          >
+            Serwis
+            <ChevronDown
+              size={16}
+              className={`transition ${menuSerwisOpen ? "rotate-180" : ""}`}
+            />
+          </button>
+
+          {menuSerwisOpen && (
+            <div className="mb-2 rounded-2xl border border-lime-400/20 bg-zinc-900 p-2">
+              {menuSerwis.map((item) => (
+                <NavLink
+                  key={item.nazwa}
+                  to={item.link}
+                  className="block rounded-xl px-4 py-3 text-zinc-200 hover:bg-lime-400 hover:text-zinc-950"
+                  onClick={zamknijMenuMobilne}
+                >
+                  {item.nazwa}
+                </NavLink>
+              ))}
+            </div>
+          )}
 
           {menuGlowne.map((item) => (
             <NavLink
               key={item.nazwa}
               to={item.link}
               className="block py-3 text-zinc-200"
-              onClick={() => setMenuMobilne(false)}
+              onClick={zamknijMenuMobilne}
             >
               {item.nazwa}
             </NavLink>
@@ -197,6 +232,7 @@ export default function MenuGlowne() {
 
           <a
             href="tel:+48792937406"
+            onClick={zamknijMenuMobilne}
             className="mt-4 inline-flex rounded-2xl bg-lime-400 px-6 py-3 font-bold text-zinc-950"
           >
             Zadzwoń
