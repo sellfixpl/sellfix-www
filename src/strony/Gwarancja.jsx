@@ -57,7 +57,7 @@ export default function Gwarancja() {
               </h3>
               <p>Gwarancja nie obejmuje:</p>
               <ul className="mt-3 list-disc space-y-2 pl-6">
-                <li>Uszkodzeń mechanicznych, w tym zalań i zbić</li>
+                <li>Uszkodzeń po upadku, w tym zalań i zbić</li>
                 <li>
                   Uszkodzeń powstałych na skutek niewłaściwego użytkowania
                   lub konserwacji urządzenia
