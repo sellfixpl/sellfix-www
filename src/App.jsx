@@ -15,6 +15,16 @@ import PolitykaPrywatnosci from "./strony/PolitykaPrywatnosci";
 import FixGuard from "./strony/FixGuard";
 import IPhoneModelPage from "./strony/IPhoneModelPage";
 import WymianaBaterii from "./strony/WymianaBaterii";
+import WymianaWyswietlacza from "./strony/WymianaWyswietlacza";
+import NaprawaPoZalaniu from "./strony/NaprawaPoZalaniu";
+import WymianaGniazdaLadowania from "./strony/WymianaGniazdaLadowania";
+import SerwisSamsung from "./strony/SerwisSamsung";
+import SerwisXiaomi from "./strony/SerwisXiaomi";
+import SerwisHuawei from "./strony/SerwisHuawei";
+import SerwisMotorola from "./strony/SerwisMotorola";
+import SerwisOppo from "./strony/SerwisOppo";
+import SerwisRealme from "./strony/SerwisRealme";
+import SerwisOnePlus from "./strony/SerwisOnePlus";
 import MenuGlowne from "./komponenty/MenuGlowne";
 import Stopka from "./komponenty/Stopka";
 import SEO from "./komponenty/SEO";
@@ -99,7 +109,7 @@ function UslugaRoute() {
 function NieZnaleziono() {
   return (
     <div className="min-h-screen text-white">
-      <SEO title="Nie znaleziono strony | SellFix" description="Nie znaleziono wskazanej podstrony SellFix." />
+      <SEO title="Nie znaleziono strony | SellFix" description="Nie znaleziono wskazanej podstrony SellFix." noindex />
       <MenuGlowne />
       <main className="mx-auto max-w-4xl px-5 py-24 text-center">
         <h1 className="text-5xl font-black">404 — Nie znaleziono strony</h1>
@@ -124,8 +134,18 @@ export default function App() {
         <Route path="/serwis/apple" element={<SerwisApple />} />
         <Route path="/serwis/apple/:modelSlug" element={<ModelIphoneRoute />} />
         <Route path="/serwis/android" element={<SerwisAndroid />} />
+        <Route path="/serwis/android/samsung" element={<SerwisSamsung />} />
+        <Route path="/serwis/android/xiaomi" element={<SerwisXiaomi />} />
+        <Route path="/serwis/android/huawei" element={<SerwisHuawei />} />
+        <Route path="/serwis/android/motorola" element={<SerwisMotorola />} />
+        <Route path="/serwis/android/oppo" element={<SerwisOppo />} />
+        <Route path="/serwis/android/realme" element={<SerwisRealme />} />
+        <Route path="/serwis/android/oneplus" element={<SerwisOnePlus />} />
         <Route path="/serwis/android/:markaSlug" element={<MarkaAndroidRoute />} />
         <Route path="/serwis/wymiana-baterii" element={<WymianaBaterii />} />
+        <Route path="/serwis/wymiana-wyswietlacza" element={<WymianaWyswietlacza />} />
+        <Route path="/serwis/naprawa-po-zalaniu" element={<NaprawaPoZalaniu />} />
+        <Route path="/serwis/wymiana-gniazda-ladowania" element={<WymianaGniazdaLadowania />} />
         <Route path="/serwis/:uslugaSlug" element={<UslugaRoute />} />
         <Route path="/skup-telefonow" element={<SkupTelefonow />} />
         <Route path="/gwarancja" element={<Gwarancja />} />
