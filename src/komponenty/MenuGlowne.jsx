@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { motion } from "framer-motion";
 
 const menuSerwis = [
-  { nazwa: "Apple", link: "/serwis/apple" },
-  { nazwa: "Android", link: "/serwis/android" },
+  { nazwa: "Wszystkie usługi", link: "/serwis" },
+  { nazwa: "Serwis Apple", link: "/serwis/apple" },
+  { nazwa: "Serwis Android", link: "/serwis/android" },
   { nazwa: "Wymiana wyświetlacza", link: "/serwis/wymiana-wyswietlacza" },
   { nazwa: "Wymiana baterii", link: "/serwis/wymiana-baterii" },
   { nazwa: "Naprawa po zalaniu", link: "/serwis/naprawa-po-zalaniu" },
@@ -14,230 +14,165 @@ const menuSerwis = [
 
 const menuOferta = [
   { nazwa: "Sklep GSM", link: "/oferta" },
-  { nazwa: "Premium Mobile", link: "/#premium-mobile" },
+  { nazwa: "Premium Mobile", link: "/#premium-mobile", hash: true },
   { nazwa: "FixGuard", link: "/fixguard" },
 ];
 
 const menuGlowne = [
-  { nazwa: "Skup Telefonów", link: "/skup-telefonow" },
+  { nazwa: "Skup telefonów", link: "/skup-telefonow" },
   { nazwa: "O nas", link: "/o-nas" },
   { nazwa: "Kontakt", link: "/kontakt" },
   { nazwa: "Artykuły", link: "/artykuly" },
   { nazwa: "Regulaminy", link: "/regulaminy" },
 ];
 
+const linkKlasa = ({ isActive }) =>
+  `text-sm font-medium transition-colors ${isActive ? "text-lime-400" : "text-zinc-200 hover:text-lime-400"}`;
+
 export default function MenuGlowne() {
+  const location = useLocation();
   const [menuMobilne, setMenuMobilne] = useState(false);
-  const [menuSerwisOpen, setMenuSerwisOpen] = useState(false);
-  const [menuOfertaOpen, setMenuOfertaOpen] = useState(false);
+  const [otwarte, setOtwarte] = useState(null);
 
-  const klasyMenu = ({ isActive }) =>
-    `text-sm font-medium transition ${
-      isActive ? "text-lime-400" : "text-zinc-200 hover:text-lime-400"
-    }`;
-
-  const zamknijMenuMobilne = () => {
+  useEffect(() => {
     setMenuMobilne(false);
-    setMenuSerwisOpen(false);
-    setMenuOfertaOpen(false);
+    setOtwarte(null);
+  }, [location.pathname, location.hash]);
+
+  useEffect(() => {
+    const zamknijEscape = (event) => {
+      if (event.key === "Escape") {
+        setMenuMobilne(false);
+        setOtwarte(null);
+      }
+    };
+    window.addEventListener("keydown", zamknijEscape);
+    return () => window.removeEventListener("keydown", zamknijEscape);
+  }, []);
+
+  const zamknij = () => {
+    setMenuMobilne(false);
+    setOtwarte(null);
   };
+
+  const przelacz = (nazwa) => setOtwarte((poprzednie) => (poprzednie === nazwa ? null : nazwa));
+
+  const renderLink = (item, klasa, onClick) =>
+    item.hash ? (
+      <a key={item.link} href={item.link} className={klasa} onClick={onClick}>
+        {item.nazwa}
+      </a>
+    ) : (
+      <NavLink key={item.link} to={item.link} className={klasa} onClick={onClick}>
+        {item.nazwa}
+      </NavLink>
+    );
+
+  const renderDesktopDropdown = (nazwa, elementy, szerokosc) => (
+    <div className="relative" onMouseLeave={() => setOtwarte(null)}>
+      <button
+        type="button"
+        aria-expanded={otwarte === nazwa}
+        aria-haspopup="true"
+        onClick={() => przelacz(nazwa)}
+        className="flex items-center gap-1 text-sm font-medium text-zinc-200 transition hover:text-lime-400"
+      >
+        {nazwa}
+        <ChevronDown size={16} className={`transition-transform ${otwarte === nazwa ? "rotate-180" : ""}`} />
+      </button>
+      {otwarte === nazwa && (
+        <div className={`absolute left-0 top-full z-50 pt-4 ${szerokosc}`}>
+          <div className="max-h-[70vh] overflow-y-auto rounded-2xl border border-lime-400/20 bg-zinc-900 p-3 shadow-2xl shadow-black/40">
+            {elementy.map((item) =>
+              renderLink(
+                item,
+                "block rounded-xl px-4 py-3 text-sm text-zinc-200 transition hover:bg-lime-400 hover:text-zinc-950",
+                zamknij
+              )
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+
+  const renderMobileDropdown = (nazwa, elementy) => (
+    <div>
+      <button
+        type="button"
+        aria-expanded={otwarte === nazwa}
+        onClick={() => przelacz(nazwa)}
+        className="flex w-full items-center justify-between py-3 text-left text-zinc-200"
+      >
+        {nazwa}
+        <ChevronDown size={16} className={`transition-transform ${otwarte === nazwa ? "rotate-180" : ""}`} />
+      </button>
+      {otwarte === nazwa && (
+        <div className="mb-2 rounded-2xl border border-lime-400/20 bg-zinc-900 p-2">
+          {elementy.map((item) =>
+            renderLink(
+              item,
+              "block rounded-xl px-4 py-3 text-zinc-200 transition hover:bg-lime-400 hover:text-zinc-950",
+              zamknij
+            )
+          )}
+        </div>
+      )}
+    </div>
+  );
 
   return (
     <header className="sticky top-0 z-50 border-b border-lime-400/20 bg-zinc-950/95 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3">
-        <Link to="/" className="flex shrink-0 items-center" onClick={zamknijMenuMobilne}>
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3">
+        <Link to="/" className="flex shrink-0 items-center" onClick={zamknij} aria-label="SellFix — strona główna">
           <img src="/1001.png" alt="SellFix" className="h-20 w-auto md:h-24" />
         </Link>
 
-        <nav className="hidden items-center gap-6 xl:flex">
-          <NavLink to="/" className={klasyMenu}>
-            Strona główna
-          </NavLink>
-
-          <div className="relative">
-            <button
-              onClick={() => {
-                setMenuSerwisOpen(!menuSerwisOpen);
-                setMenuOfertaOpen(false);
-              }}
-              className="flex items-center gap-1 text-sm font-medium text-zinc-200 transition hover:text-lime-400"
-            >
-              Serwis <ChevronDown size={16} />
-            </button>
-
-            {menuSerwisOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="absolute left-0 mt-4 w-80 rounded-2xl border border-lime-400/20 bg-zinc-900 p-3 shadow-2xl shadow-black/40"
-              >
-                {menuSerwis.map((item) => (
-                  <NavLink
-                    key={item.nazwa}
-                    to={item.link}
-                    onClick={() => setMenuSerwisOpen(false)}
-                    className={({ isActive }) =>
-                      `block rounded-xl px-4 py-3 text-sm transition ${
-                        isActive
-                          ? "bg-lime-400 text-zinc-950"
-                          : "text-zinc-200 hover:bg-lime-400 hover:text-zinc-950"
-                      }`
-                    }
-                  >
-                    {item.nazwa}
-                  </NavLink>
-                ))}
-              </motion.div>
-            )}
-          </div>
-
-          <div className="relative">
-            <button
-              onClick={() => {
-                setMenuOfertaOpen(!menuOfertaOpen);
-                setMenuSerwisOpen(false);
-              }}
-              className="flex items-center gap-1 text-sm font-medium text-zinc-200 transition hover:text-lime-400"
-            >
-              Oferta <ChevronDown size={16} />
-            </button>
-
-            {menuOfertaOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="absolute left-0 mt-4 w-72 rounded-2xl border border-lime-400/20 bg-zinc-900 p-3 shadow-2xl shadow-black/40"
-              >
-                {menuOferta.map((item) => (
-                  <NavLink
-                    key={item.nazwa}
-                    to={item.link}
-                    onClick={() => setMenuOfertaOpen(false)}
-                    className={({ isActive }) =>
-                      `block rounded-xl px-4 py-3 text-sm transition ${
-                        isActive
-                          ? "bg-lime-400 text-zinc-950"
-                          : "text-zinc-200 hover:bg-lime-400 hover:text-zinc-950"
-                      }`
-                    }
-                  >
-                    {item.nazwa}
-                  </NavLink>
-                ))}
-              </motion.div>
-            )}
-          </div>
-
+        <nav aria-label="Nawigacja główna" className="hidden items-center gap-5 xl:flex">
+          <NavLink to="/" end className={linkKlasa} onClick={zamknij}>Strona główna</NavLink>
+          {renderDesktopDropdown("Serwis", menuSerwis, "w-80")}
+          {renderDesktopDropdown("Oferta", menuOferta, "w-72")}
           {menuGlowne.map((item) => (
-            <NavLink key={item.nazwa} to={item.link} className={klasyMenu}>
+            <NavLink key={item.link} to={item.link} className={linkKlasa} onClick={zamknij}>
               {item.nazwa}
             </NavLink>
           ))}
         </nav>
 
-        <a
-          href="tel:+48792937406"
-          className="hidden rounded-2xl bg-lime-400 px-6 py-3 text-sm font-bold text-zinc-950 transition hover:bg-lime-300 md:inline-flex"
-        >
+        <a href="tel:+48792937406" className="hidden shrink-0 rounded-2xl bg-lime-400 px-6 py-3 text-sm font-bold text-zinc-950 transition hover:bg-lime-300 md:inline-flex">
           Zadzwoń
         </a>
 
         <button
+          type="button"
+          aria-label={menuMobilne ? "Zamknij menu" : "Otwórz menu"}
+          aria-expanded={menuMobilne}
+          aria-controls="sellfix-menu-mobilne"
           className="text-white xl:hidden"
-          onClick={() => setMenuMobilne(!menuMobilne)}
-          aria-label="Menu"
+          onClick={() => { setMenuMobilne((v) => !v); setOtwarte(null); }}
         >
           {menuMobilne ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {menuMobilne && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          className="max-h-[calc(100vh-105px)] overflow-y-auto border-t border-lime-400/20 bg-zinc-950 px-5 pb-5 xl:hidden"
+        <nav
+          id="sellfix-menu-mobilne"
+          aria-label="Nawigacja mobilna"
+          className="max-h-[calc(100dvh-105px)] overflow-y-auto overscroll-contain border-t border-lime-400/20 bg-zinc-950 px-5 pb-6 xl:hidden"
         >
-          <NavLink to="/" className="block py-3 text-zinc-200" onClick={zamknijMenuMobilne}>
-            Strona główna
-          </NavLink>
-
-          <button
-            onClick={() => {
-              setMenuOfertaOpen(!menuOfertaOpen);
-              setMenuSerwisOpen(false);
-            }}
-            className="flex w-full items-center justify-between py-3 text-left text-zinc-200"
-          >
-            Oferta
-            <ChevronDown
-              size={16}
-              className={`transition ${menuOfertaOpen ? "rotate-180" : ""}`}
-            />
-          </button>
-
-          {menuOfertaOpen && (
-            <div className="mb-2 rounded-2xl border border-lime-400/20 bg-zinc-900 p-2">
-              {menuOferta.map((item) => (
-                <NavLink
-                  key={item.nazwa}
-                  to={item.link}
-                  className="block rounded-xl px-4 py-3 text-zinc-200 hover:bg-lime-400 hover:text-zinc-950"
-                  onClick={zamknijMenuMobilne}
-                >
-                  {item.nazwa}
-                </NavLink>
-              ))}
-            </div>
-          )}
-
-          <button
-            onClick={() => {
-              setMenuSerwisOpen(!menuSerwisOpen);
-              setMenuOfertaOpen(false);
-            }}
-            className="flex w-full items-center justify-between py-3 text-left text-zinc-200"
-          >
-            Serwis
-            <ChevronDown
-              size={16}
-              className={`transition ${menuSerwisOpen ? "rotate-180" : ""}`}
-            />
-          </button>
-
-          {menuSerwisOpen && (
-            <div className="mb-2 rounded-2xl border border-lime-400/20 bg-zinc-900 p-2">
-              {menuSerwis.map((item) => (
-                <NavLink
-                  key={item.nazwa}
-                  to={item.link}
-                  className="block rounded-xl px-4 py-3 text-zinc-200 hover:bg-lime-400 hover:text-zinc-950"
-                  onClick={zamknijMenuMobilne}
-                >
-                  {item.nazwa}
-                </NavLink>
-              ))}
-            </div>
-          )}
-
+          <NavLink to="/" end className="block py-3 text-zinc-200" onClick={zamknij}>Strona główna</NavLink>
+          {renderMobileDropdown("Serwis", menuSerwis)}
+          {renderMobileDropdown("Oferta", menuOferta)}
           {menuGlowne.map((item) => (
-            <NavLink
-              key={item.nazwa}
-              to={item.link}
-              className="block py-3 text-zinc-200"
-              onClick={zamknijMenuMobilne}
-            >
+            <NavLink key={item.link} to={item.link} className="block py-3 text-zinc-200" onClick={zamknij}>
               {item.nazwa}
             </NavLink>
           ))}
-
-          <a
-            href="tel:+48792937406"
-            onClick={zamknijMenuMobilne}
-            className="mt-4 inline-flex rounded-2xl bg-lime-400 px-6 py-3 font-bold text-zinc-950"
-          >
+          <a href="tel:+48792937406" onClick={zamknij} className="mt-4 inline-flex rounded-2xl bg-lime-400 px-6 py-3 font-bold text-zinc-950">
             Zadzwoń
           </a>
-        </motion.div>
+        </nav>
       )}
     </header>
   );

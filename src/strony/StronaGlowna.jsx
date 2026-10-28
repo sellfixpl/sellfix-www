@@ -52,20 +52,11 @@ export default function StronaGlowna() {
 
   return (
     <div className="min-h-screen text-white">
-      <FAQSchema />
+      <FAQSchema faqLista={faqLista} />
       <MenuGlowne />
 
       <main>
-        <SekcjaStartowa />
-
-          <div className="mx-auto mt-10 flex max-w-7xl px-5">
-            <a
-              href="/gra/"
-              className="inline-flex rounded-2xl bg-lime-400 px-6 py-3 font-black text-black transition hover:scale-105 hover:bg-lime-300"
-              >
-                Zagraj w SellFix Game
-            </a>
-          </div>
+        <SekcjaStartowa /> 
         <BannerPromo />
         <PremiumMobile />
         <FixGuard />
