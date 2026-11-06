@@ -130,14 +130,17 @@ export default function App() {
   return (
     <div className="relative isolate min-h-screen bg-zinc-950 text-white">
       {!czyStronaGlowna && (
-        <div
-          aria-hidden="true"
-          className="pointer-events-none fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundColor: "#071b10",
-            backgroundImage: "linear-gradient(90deg, rgba(3, 17, 10, 0.20), rgba(3, 17, 10, 0.12)), url('/tlo-sellfix.png')",
-          }}
-        />
+        <>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: "url('/tlo-sellfix.png')" }}
+          />
+          <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 bg-zinc-950/82" />
+          <div aria-hidden="true" className="pointer-events-none fixed -right-40 top-20 z-0 h-[520px] w-[520px] rounded-full bg-lime-400/20 blur-3xl" />
+          <div aria-hidden="true" className="pointer-events-none fixed -left-40 bottom-10 z-0 h-[520px] w-[520px] rounded-full bg-lime-400/10 blur-3xl" />
+          <div aria-hidden="true" className="pointer-events-none fixed left-1/2 top-1/3 z-0 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-lime-400/10 blur-3xl" />
+        </>
       )}
       <div className="relative z-10 min-h-screen">
       <LocalBusinessSchema />
