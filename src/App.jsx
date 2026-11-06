@@ -130,20 +130,14 @@ export default function App() {
   return (
     <div className="relative isolate min-h-screen bg-zinc-950 text-white">
       {!czyStronaGlowna && (
-        <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-zinc-950">
-          <video
-            className="absolute inset-0 h-full w-full object-cover opacity-50"
-            src="/sellfix-hero.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="/tlo-sellfix.png"
-          />
-          <div className="absolute inset-0 bg-zinc-950/65" />
-          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/35 via-zinc-950/20 to-zinc-950/80" />
-        </div>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundColor: "#071b10",
+            backgroundImage: "linear-gradient(90deg, rgba(3, 17, 10, 0.20), rgba(3, 17, 10, 0.12)), url('/tlo-sellfix.png')",
+          }}
+        />
       )}
       <div className="relative z-10 min-h-screen">
       <LocalBusinessSchema />
