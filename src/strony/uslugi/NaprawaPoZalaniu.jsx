@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { AlertTriangle, Droplets, SearchCheck, Wrench, ShieldCheck, Phone, MapPin, CheckCircle2, XCircle } from "lucide-react";
-import MenuGlowne from "../komponenty/MenuGlowne";
-import Stopka from "../komponenty/Stopka";
-import SEO from "../komponenty/SEO";
+import MenuGlowne from "../../komponenty/MenuGlowne";
+import Stopka from "../../komponenty/Stopka";
+import SEO from "../../komponenty/SEO";
 
 const zrob = [
   "Jeśli urządzenie działa, wyłącz je i nie próbuj ponownie uruchamiać.",

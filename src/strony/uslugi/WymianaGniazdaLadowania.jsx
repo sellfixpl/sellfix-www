@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { Cable, CheckCircle2, Clock3, MapPin, Phone, ShieldCheck, Smartphone, Wrench } from "lucide-react";
-import MenuGlowne from "../komponenty/MenuGlowne";
-import Stopka from "../komponenty/Stopka";
-import SEO from "../komponenty/SEO";
+import MenuGlowne from "../../komponenty/MenuGlowne";
+import Stopka from "../../komponenty/Stopka";
+import SEO from "../../komponenty/SEO";
 
 const korzysci = [
   { Icon: Cable, tytul: "Diagnostyka portu", opis: "Sprawdzamy gniazdo, kabel, ładowarkę i objawy problemów z zasilaniem." },

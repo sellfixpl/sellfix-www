@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { Smartphone, ShieldCheck, SearchCheck, Wrench, Phone, MapPin, CheckCircle2, AlertTriangle } from "lucide-react";
-import MenuGlowne from "../komponenty/MenuGlowne";
-import Stopka from "../komponenty/Stopka";
-import SEO from "../komponenty/SEO";
+import MenuGlowne from "../../komponenty/MenuGlowne";
+import Stopka from "../../komponenty/Stopka";
+import SEO from "../../komponenty/SEO";
 
 const etapy = [
   { Icon: SearchCheck, nazwa: "Weryfikacja usterki", opis: "Sprawdzamy obraz, dotyk i stan urządzenia, aby określić zakres potrzebnej naprawy." },

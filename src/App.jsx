@@ -13,11 +13,12 @@ import Regulaminy from "./strony/Regulaminy";
 import RegulaminSerwisu from "./strony/RegulaminSerwisu";
 import PolitykaPrywatnosci from "./strony/PolitykaPrywatnosci";
 import FixGuard from "./strony/FixGuard";
-import IPhoneModelPage from "./strony/IPhoneModelPage";
-import WymianaBaterii from "./strony/WymianaBaterii";
-import WymianaWyswietlacza from "./strony/WymianaWyswietlacza";
-import NaprawaPoZalaniu from "./strony/NaprawaPoZalaniu";
-import WymianaGniazdaLadowania from "./strony/WymianaGniazdaLadowania";
+// Vite automatycznie wykrywa istniejące strony modeli w folderze modele-iphone.
+const stronyIphone = import.meta.glob("./strony/modele-iphone/*.jsx", { eager: true, import: "default" });
+import WymianaBaterii from "./strony/uslugi/WymianaBaterii";
+import WymianaWyswietlacza from "./strony/uslugi/WymianaWyswietlacza";
+import NaprawaPoZalaniu from "./strony/uslugi/NaprawaPoZalaniu";
+import WymianaGniazdaLadowania from "./strony/uslugi/WymianaGniazdaLadowania";
 import SerwisSamsung from "./strony/SerwisSamsung";
 import SerwisXiaomi from "./strony/SerwisXiaomi";
 import SerwisHuawei from "./strony/SerwisHuawei";
@@ -45,13 +46,10 @@ const modele = [
   "iPhone 17", "iPhone 17 Plus", "iPhone 17 Pro", "iPhone 17 Pro Max",
 ];
 const modelePoSlug = Object.fromEntries(modele.map((model) => [model.toLowerCase().replace(/\s+/g, "-"), model]));
-const naprawyIphone = [
-  { nazwa: "Wymiana wyświetlacza", opis: "Diagnostyka uszkodzonego ekranu, dotyku i obrazu oraz dobór odpowiedniej części." },
-  { nazwa: "Wymiana baterii", opis: "Sprawdzenie kondycji i układu zasilania, a następnie dobór rozwiązania do modelu." },
-  { nazwa: "Wymiana złącza ładowania", opis: "Sprawdzenie gniazda, przewodu i układu ładowania przed wyceną naprawy." },
-  { nazwa: "Naprawa po zalaniu", opis: "Ocena stanu urządzenia po kontakcie z cieczą i możliwości dalszej naprawy." },
-  { nazwa: "Naprawa głośnika i mikrofonu", opis: "Diagnostyka problemów z dźwiękiem i rozmowami telefonicznymi." },
-];
+// Mapowanie adresów SEO na nazwy istniejących plików, np. iphone-15-pro -> IPhone15Pro.jsx.
+function nazwaPlikuModelu(model) {
+  return model.replace(/\s+/g, "").replace(/^iPhone/, "IPhone");
+}
 
 const marki = {
   samsung: "Samsung", xiaomi: "Xiaomi", huawei: "Huawei",
@@ -89,7 +87,11 @@ function ModelIphoneRoute() {
   const { modelSlug } = useParams();
   const model = modelePoSlug[modelSlug];
   if (!model) return <NieZnaleziono />;
-  return <IPhoneModelPage model={model} slug={modelSlug} opis={`Serwis ${model} w Kielcach. Diagnozujemy usterki ekranu, baterii, ładowania i innych podzespołów. Koszt oraz dostępność części potwierdzamy po weryfikacji urządzenia.`} naprawy={naprawyIphone} />;
+
+  const plik = `./strony/modele-iphone/${nazwaPlikuModelu(model)}.jsx`;
+  const Komponent = stronyIphone[plik];
+  if (!Komponent) return <NieZnaleziono />;
+  return <Komponent />;
 }
 
 function MarkaAndroidRoute() {

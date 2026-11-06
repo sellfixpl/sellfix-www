@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { BatteryCharging, CheckCircle2, Clock3, MapPin, Phone, ShieldCheck, Smartphone, Wrench } from "lucide-react";
-import MenuGlowne from "../komponenty/MenuGlowne";
-import Stopka from "../komponenty/Stopka";
-import SEO from "../komponenty/SEO";
+import MenuGlowne from "../../komponenty/MenuGlowne";
+import Stopka from "../../komponenty/Stopka";
+import SEO from "../../komponenty/SEO";
 
 const korzysci = [
   { Icon: BatteryCharging, tytul: "Diagnostyka baterii", opis: "Sprawdzamy objawy zużycia, kondycję baterii i działanie układu ładowania." },
