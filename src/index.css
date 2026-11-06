@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Statyczne tło graficzne SellFix dla podstron. */
+/* Statyczne, przyciemnione tło podstron SellFix. */
 html,
 body,
 #root {
@@ -9,8 +9,15 @@ body,
 
 body {
   margin: 0;
-  background-color: #071b10;
-  background-image: linear-gradient(90deg, rgba(3, 17, 10, 0.70), rgba(3, 17, 10, 0.40)), url('/tlo-sellfix.png');
+  background-color: #07180e;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(3, 17, 10, 0.78) 0%,
+      rgba(3, 17, 10, 0.72) 55%,
+      rgba(3, 17, 10, 0.60) 100%
+    ),
+    url("/tlo-sellfix.png");
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
