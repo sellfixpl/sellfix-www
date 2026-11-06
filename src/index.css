@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+/* Ciemne tło awaryjne, także przed załadowaniem filmu. */
+html, body, #root {
+  min-height: 100%;
+  margin: 0;
+  background-color: #09090b;
+  color: #fff;
+}

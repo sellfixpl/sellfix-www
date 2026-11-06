@@ -1,4 +1,4 @@
-import { Routes, Route, Link, useParams } from "react-router-dom";
+import { Routes, Route, Link, useParams, useLocation } from "react-router-dom";
 import StronaGlowna from "./strony/StronaGlowna";
 import ONas from "./strony/ONas";
 import Kontakt from "./strony/Kontakt";
@@ -124,8 +124,28 @@ function NieZnaleziono() {
 }
 
 export default function App() {
+  const { pathname } = useLocation();
+  const czyStronaGlowna = pathname === "/";
+
   return (
-    <>
+    <div className="relative isolate min-h-screen bg-zinc-950 text-white">
+      {!czyStronaGlowna && (
+        <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-zinc-950">
+          <video
+            className="absolute inset-0 h-full w-full object-cover opacity-50"
+            src="/sellfix-hero.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/tlo-sellfix.png"
+          />
+          <div className="absolute inset-0 bg-zinc-950/65" />
+          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/35 via-zinc-950/20 to-zinc-950/80" />
+        </div>
+      )}
+      <div className="relative z-10 min-h-screen">
       <LocalBusinessSchema />
       <Routes>
         <Route path="/" element={<StronaGlowna />} />
@@ -160,6 +180,7 @@ export default function App() {
       </Routes>
       <FloatingSocials />
       <CookieBanner />
-    </>
+      </div>
+    </div>
   );
 }
