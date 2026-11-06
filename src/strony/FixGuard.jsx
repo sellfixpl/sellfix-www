@@ -25,7 +25,7 @@ const fixGuardCennik = [
   ["iPhone 16 Pro", "249", "299", "199"],
   ["iPhone 17", "249", "399", "199"],
   ["iPhone 17 Pro", "299", "499", "199"],
-  ["iPhone 17 Pro Max", "349", "549", "199"],
+  ["iPhone 17 Pro Max", "11349", "549", "199"],
 ];
 
 export default function FixGuard() {
